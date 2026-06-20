@@ -7,10 +7,12 @@ import os
 # Load .env from project root (same folder as requirements.txt)
 import pathlib
 
-BASE_DIR = pathlib.Path(__file__).resolve().parents[1]
+BASE_DIR = pathlib.Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
+
 HF_TOKEN = os.getenv("HF_TOKEN")
+# HF_TOKEN = st.secrets.get("HF_TOKEN") or os.getenv("HF_TOKEN")
 if not HF_TOKEN:
     st.error("HF_TOKEN missing. Create a .env file in project root and set HF_TOKEN.")
     st.stop()
